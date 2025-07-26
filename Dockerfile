@@ -16,7 +16,10 @@ RUN sed -i '/Version: /c\Version: 2.10.0' /usr/lib/x86_64-linux-gnu/pkgconfig/li
 RUN autoreconf -fvi && \
     ./configure && \
     make && \
-    make install
+    make install && \
+    rm -rf /pcb2gcode /var/lib/apt/lists/*
+
+RUN apt-get -y purge build-essential automake autoconf autoconf-archive libtool
 
 WORKDIR /data/
 
